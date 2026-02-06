@@ -7,21 +7,13 @@ from sklearn.model_selection import train_test_split
 
 from src.exception import CustomException
 from src.logger import logging
-from src.components.data_transformation import (
-    DataTransformation,
-    DataTransformationConfig,
-)
-from src.components.model_trainer import (
-  ModelTrainer,
-  ModelTrainerConfig,
-  )
 
 
 @dataclass
 class DataIngestionConfig:
-    train_data_path: str = os.path.join("artifacts", "train.csv")
-    test_data_path: str = os.path.join("artifacts", "test.csv")
-    raw_data_path: str = os.path.join("artifacts", "data.csv")
+    train_data_path: str = os.path.join('artifacts', "train.csv")
+    test_data_path: str = os.path.join('artifacts', "test.csv")
+    raw_data_path: str = os.path.join('artifacts', "data.csv")
 
 
 class DataIngestion:
@@ -32,13 +24,8 @@ class DataIngestion:
         logging.info("Entered the data ingestion method")
 
         try:
-            file_path = os.path.join(
-                "notebook",
-                "data",
-                "stud.csv",
-            )
 
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(r'src\notebook\data\Student.csv')
             logging.info("Read the dataset as dataframe")
 
             os.makedirs(
@@ -85,4 +72,4 @@ class DataIngestion:
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    train_data, test_data = obj.initiate_data_ingestion()
+    obj.initiate_data_ingestion()
